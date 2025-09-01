@@ -8,31 +8,17 @@ import time
 import pandas as pd
 from bs4 import BeautifulSoup
 import ast
-
-load_dotenv()
-#cookies = os.getenv('COOKIE_1')
-#dicionarios_cookies = json.dumps(cookies)
-
-#meu_dicionario_formatado = ast.literal_eval(cookies)
-
-#print(type(meu_dicionario_formatado))
+from classes.login import Login
+from classes.scrapy import Scrape
 
 
 
-navegador = webdriver.Firefox()
+#Login.inicializarNavegador('https://www.instagram.com/p/DNgZkDXuFmZ/')
+login = Login.inicializarNavegador('https://www.instagram.com/p/DNgZkDXuFmZ/')
 
-navegador.get('https://www.instagram.com/')
+html_page = Scrape.Scraping(login)
 
-for i in range(1,9):
-    string = 'COOKIE_{}'.format(i)
+list_comments = Scrape.get_comments(html_page)
 
-    cookie = os.getenv(string)
-    cookie_formatado = ast.literal_eval(cookie)
-
-    navegador.add_cookie(cookie_formatado)
-    
-
-navegador.refresh()
-
-
-
+for comment in list_comments:
+    print(comment)
