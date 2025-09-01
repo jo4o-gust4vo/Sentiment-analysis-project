@@ -13,7 +13,7 @@ from classes.scrapy import Scrape
 
 
 
-#Login.inicializarNavegador('https://www.instagram.com/p/DNgZkDXuFmZ/')
+
 login = Login.inicializarNavegador('https://www.instagram.com/p/DNgZkDXuFmZ/')
 
 html_page = Scrape.Scraping(login)
