@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from selenium import webdriver
 import ast
 import time
+from selenium.webdriver.chrome.options import Options
 
 
 
@@ -14,7 +15,9 @@ class Login:
 
     @classmethod    
     def inicializarNavegador(cls, url):
-        navegador = webdriver.Firefox()
+        options = webdriver.FirefoxOptions()
+        options.add_argument("--headless")
+        navegador = webdriver.Firefox(options=options)
         navegador.get(url)
 
         for i in range(1,9):
