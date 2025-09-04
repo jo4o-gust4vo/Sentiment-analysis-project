@@ -16,9 +16,11 @@ from classes.scrapy import Scrape
 #Login.inicializarNavegador('https://www.instagram.com/p/DNgZkDXuFmZ/')
 login = Login.inicializarNavegador('https://www.instagram.com/p/DNgZkDXuFmZ/')
 
+Scrape.scroll_comments(login)
+
 html_page = Scrape.Scraping(login)
 
 list_comments = Scrape.get_comments(html_page)
 
 for comment in list_comments:
-    print(comment)
+   print(comment)

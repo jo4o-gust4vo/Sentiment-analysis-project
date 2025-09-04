@@ -2,8 +2,28 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import time
 
 
+
+"""
+       
+        while True:
+            driver.execute_script(script)
+            time.sleep(1)
+            height_new = '''
+            iframe = document.getElementsByClassName("x5yr21d xw2csxc x1odjw0f x1n2onr6")[0];
+            return iframe.scrollHeight;     
+            '''
+
+            if height == driver.execute_script(height_new):
+                break
+
+            
+
+       
+"""
+        
 class Scrape:
     def __init__(self):
         pass
@@ -30,4 +50,43 @@ class Scrape:
             list_comments.append(comment.text.strip())
 
         return list_comments
+    
+    @classmethod
+    def scroll_comments(cls,driver):
+        script = '''
+            // Pega o primeiro elemento iframe na página
+            var iframe = document.getElementsByClassName("x5yr21d xw2csxc x1odjw0f x1n2onr6")[0];
+            var y = iframe.scrollHeight;
+            iframe.scrollTo(0,y)
+                '''
+        height_script = '''
+            iframe = document.getElementsByClassName("x5yr21d xw2csxc x1odjw0f x1n2onr6")[0];
+            return iframe.scrollHeight;
+                        
+                        '''
+        
+
+        height = driver.execute_script(height_script)
+        while True:
+            height = driver.execute_script(height_script)
+            driver.execute_script(script)
+            time.sleep(2)
+            height_new = '''
+            iframe = document.getElementsByClassName("x5yr21d xw2csxc x1odjw0f x1n2onr6")[0];
+            return iframe.scrollHeight;     
+            '''
+
+           # print(height)
+           # print(driver.execute_script(height_new))
+
+            if height == driver.execute_script(height_new):
+                print('Scrollado com sucesso!')
+                break
+            
+       
+       
+       
+       
+
+
  
