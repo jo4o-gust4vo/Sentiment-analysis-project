@@ -23,5 +23,5 @@ TestResults.xml
 #env files and cookies 
 *.env
 #testes folder
-.testes/
+/testes
 

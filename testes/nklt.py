@@ -29,3 +29,10 @@ nltk.download('stopwords')
 
 # para escolher as stopwords do português adicionamos a opçaõ de língua "portuguese"
 stopwords = nltk.corpus.stopwords.words('portuguese')
+
+# baixando o corpus
+nltk.download('mac_morpho')
+nltk.corpus.mac_morpho.words()
+
+# vendo algumas tags
+nltk.corpus.mac_morpho.tagged_words()
