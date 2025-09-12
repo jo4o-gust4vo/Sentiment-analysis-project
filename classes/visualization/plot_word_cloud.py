@@ -1,5 +1,11 @@
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+from pathlib import Path
+import matplotlib
+matplotlib.use('Agg') # or 'SVG'
+
+
+ROOT_PATH = Path(__file__).parent.parent.parent
 
 class Plot_word_cloud:
     def __init__(self):
@@ -12,5 +18,5 @@ class Plot_word_cloud:
 
         nuvem_de_palavras = WordCloud().generate(unica_string)
         plt.imshow(nuvem_de_palavras,interpolation='bilinear')
-        plt.show()
+        plt.savefig(ROOT_PATH / 'app' / 'static' / 'imagem' / 'wordCloud.png')
         plt.close()
