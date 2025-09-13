@@ -18,30 +18,31 @@ from pathlib import Path
 
 ROOT_PATH = Path(__file__).parent
 
-login = Login.inicializarNavegador('https://www.instagram.com/p/DOfFca2jP5W/')
+#login = Login.inicializarNavegador('https://www.instagram.com/p/DOfFca2jP5W/')
 
-Scrape.scroll_comments(login)
+#Scrape.scroll_comments(login)
 
-html_page = Scrape.Scraping(login)
+#html_page = Scrape.Scraping(login)
 
-list_comments = Scrape.get_comments(html_page)
+#list_comments = Scrape.get_comments(html_page)
 
 #for comment in list_comments:
 #   print(comment)
 
 
-with open(ROOT_PATH / 'database' / 'comentarios.csv', 'w',encoding='utf-8') as arquivo:
+#with open(ROOT_PATH / 'database' / 'comentarios.csv', 'w',encoding='utf-8') as arquivo:
       
-      for comment in list_comments:
-         arquivo.write(comment+'\n')
+   #   for comment in list_comments:
+   #      arquivo.write(comment+'\n')
 
 
 df = Pnl.get_comment('comentarios.csv')
-
-
+#Plot_bar.plot(df)
 Plot_word_cloud.plot(Pnl.apply_stop_word(df))
 
+#Plot_word_cloud.plot(Pnl.apply_stop_word(df))
 
-time.sleep(3)
 
-Plot_bar.plot(df)
+#time.sleep(3)
+
+#Plot_bar.plot(df)

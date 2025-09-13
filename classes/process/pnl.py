@@ -20,7 +20,7 @@ class Pnl:
             Retorna DataFrame dos comentários obtidos 
         '''
         col_name = ['Comentários']
-        dataframe = pd.read_csv(ROOT_PATH / 'database' / nome_arquivo, sep=';', encoding='utf-8',names=['comentarios'])
+        dataframe = pd.read_csv(ROOT_PATH / 'database' / nome_arquivo, sep=';', encoding='utf-8',names=['comentarios'], engine='python',on_bad_lines='skip')
         
 
         return dataframe

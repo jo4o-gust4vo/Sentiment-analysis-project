@@ -49,9 +49,10 @@ class Scrape:
 
         height = driver.execute_script(height_script)
         while True:
+            #time.sleep(3)
             height = driver.execute_script(height_script)
             driver.execute_script(script)
-            time.sleep(2)
+            time.sleep(10)
             height_new = '''
             iframe = document.getElementsByClassName("x5yr21d xw2csxc x1odjw0f x1n2onr6")[0];
             return iframe.scrollHeight;     
