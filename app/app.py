@@ -18,10 +18,10 @@ def homepage():
 
 @app.route('/process', methods=['POST'])
 def processamento():
-    valorDoInput = request.form['url']
+    url = request.form['url']
 
 
-    login = Login.inicializarNavegador(valorDoInput)
+    login = Login.inicializarNavegador(url)
 
     Scrape.scroll_comments(login)
 

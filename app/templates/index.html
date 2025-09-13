@@ -3,37 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
-     <title>Cicle</title>
-
-
+    <title>Cicle - Design Futurista</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-      
-</style>
+        /* Variáveis de cores */
+        :root {
+            --bg-color: #121212;
+            --glass-bg: rgba(28, 28, 28, 0.4);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-color: #f0f0f0;
+            --accent-color: #00e6e6;
+            --accent-glow: rgba(0, 230, 230, 0.6);
+        }
+
+        /* Animação de fundo com orbes de brilho */
+        .background-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            filter: blur(80px); /* O desfoque faz com que os orbes pareçam brilhos */
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            animation: move-orb 20s infinite alternate-reverse;
+            opacity: 0.8;
+        }
+        .orb-1 {
+            width: 600px; height: 600px;
+            background: linear-gradient(135deg, #8a2be2, #4169e1);
+            top: -200px; left: -200px;
+        }
+        .orb-2 {
+            width: 400px; height: 400px;
+            background: linear-gradient(135deg, #00e6e6, #4169e1);
+            bottom: -150px; right: -150px;
+            animation-delay: 5s;
+        }
+        @keyframes move-orb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(200px, 150px) scale(1.2); }
+        }
+
+        /* Estilos base para o corpo da página */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Efeito de Vidro no container principal */
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: var(--accent-color);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        p {
+            color: #ccc;
+            font-weight: 300;
+        }
+
+        /* Seção do formulário */
+        .form-section {
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #d0d0d0;
+            font-weight: 400;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        button {
+            padding: 15px 40px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 230, 230, 0.5);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background: #00ffff;
+            box-shadow: 0 8px 25px rgba(0, 230, 230, 0.8);
+        }
+        
+        /* Estilos para as visualizações de dados */
+        .cicle-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .cicle {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .cicle:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 25px var(--accent-color);
+        }
+
+        .cicle h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            font-weight: 500;
+            text-shadow: 0 0 5px var(--accent-glow);
+        }
+
+        .cicle img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #555;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --------------------- ANIMAÇÃO DE CARREGAMENTO --------------------- */
+        .loading-overlay {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 6px solid var(--accent-color);
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 30px; }
+        }
+    </style>
 </head>
 
-
 <body>
-    <div class='container'>
-        <div class="label">
-            
-            <form action="/process" method="post">
-                <label for="url">Digite a URL do post do Instagram:</label>
-                <input type="text" id="url" name="url" required>
-                <button type="submit">Enviar</button>
-            </form>
-
-
-        </div>
-
-        <div class="cicle">
-            <img src="{{url_for('static', filename='imagem/bar.png')}}"/>
-        </div>
-        <div class="cicle">
-            <img src="{{url_for('static', filename='imagem/wordCloud.png')}}"/>
-        </div>        
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
     </div>
 
+    <div class="container">
+        <h1>Análise de Post do Instagram</h1>
+        <p>Experimente uma visualização de dados do próximo nível. Cole a URL de um post para começar.</p>
+        
+        <div class="form-section">
+            <form id="analysis-form" action="/process" method="post">
+                <label for="url">URL do post:</label>
+                <input type="text" id="url" name="url" placeholder="Ex: https://instagram.com/p/..." required>
+                <button type="submit">Analisar</button>
+            </form>
+        </div>
+
+        <div class="cicle-container">
+            <div class="cicle">
+                <h3>Gráfico de Barras</h3>
+                <img src="{{ url_for('static', filename='imagem/bar.png') }}" alt="Gráfico de barras"/>
+            </div>
+            <div class="cicle">
+                <h3>Nuvem de Palavras</h3>
+                <img src="{{ url_for('static', filename='imagem/wordCloud.png') }}" alt="Nuvem de palavras"/>
+            </div>
+        </div>
+    </div>
+    
+    <div class="loading-overlay">
+        <div class="loader"></div>
+        <p>Analisando dados...</p>
+    </div>
+
+    <script>
+        const form = document.getElementById('analysis-form');
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        const button = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', function(event) {
+            // Previne o envio padrão do formulário
+            event.preventDefault();
+
+            // Mostra o overlay de carregamento
+            loadingOverlay.style.display = 'flex';
+
+            // Desabilita o botão para evitar múltiplos cliques
+            button.disabled = true;
+
+            // Envia o formulário após um pequeno atraso para a animação ser renderizada
+            setTimeout(() => {
+                form.submit();
+            }, 50); // 50 milissegundos é o suficiente
+        });
+    </script>
 </body>
 </html>
